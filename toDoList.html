@@ -1,0 +1,58 @@
+
+!!! Kad izpildam/novēršam kaut ko, tav izkomentējam konkrēto ierakstu :) !!!
+__________________________________________________________________________________________________________________
+
+Ko jāizdara :
+    <!-- - Jāizveido komentāru sadaļa, ar iespēju postot komentārus, un tos lasīt pie konkrēta faila. Nav vajadzīgs
+        admina approvals komentāriem. -->
+    <!-- - Jāizveido konkrēta dokumenta skatā iespēju pievienot editu. Kaut kādu pogu or smth, kas aizved uz 
+        file_edit.blade.php , kur padoti konkrētā faila dati, lai tie nebūtu jāievada no jauna vietās,
+        ko nemaina. -->
+    <!-- - Jāsaraksta kaut kāds random info home lapā, lai būtu ķip sakarīgs saturs. :D -->
+    <!-- - Jāizveido admin panelis, ar failiem, kas jāapstiprina | editiem, kas jāapstiprina | iespēju apskatīt visus
+        userus un viņu pievienotos failus | izveidot vai editot (Mainīt nosaukumu) directories | un iespējams 
+        vēl ko citu. -->
+    <!-- - Jāpieliek download poga konkrēta faila apskatīšanas skatā. -->
+    <!-- - Dokumentu skatiem kreisajā pusē navigācijā jāsataisa sadalījums pa kursiem. -->
+
+__________________________________________________________________________________________________________________
+
+Problēmas :
+    <!-- - Nestrādā katram kursam atsevišķais dropdowns ar priekšmetu nosaukumiem zem "Izvēlies kursu" navigācijā. -->
+    - Esot login lapā un ierakstot /file/download/{filename}, nekas nenotiek, bet kad uzspiež login pogu,
+        tad sāk lejupielādēties fails un netiek redirectots uz home page, un uzspiežot atkārtoti login pogu,
+        parāda, ka 'page has expired'.
+    <!-- - Skatoties pēdējos pievienotos dokumentus vai konkrēta directory dokumentus, description izspiež linku ārā
+        no faila 'kartītes'. Varētu moš izveidot, ka description rāda tikai vienu rindiņu un daudzpunkti galā, 
+        vai arī uzlikt tā, ka uzspiežot jebkur uz dokumenta 'kartītes', atveras dokuments. Bet still, descriptions 
+        izietu no 'kartītes' izmēriem. -->
+    - Samazinot lapu uz kādu mobile versiju, pēdējie pievienotie dokumentu un konkrēta directory dokumentu 'kartītes'
+        paliek šaurākas tā, ka neko nevar izlasīt. Vajadzētu uztaisīt tā, ka sašaurinot lapu, paliek pa 2 kartītēm 
+        vienā rindā, un vēl sašaurinot, pa 1 kartītei.
+    - Pie pēdējiem pievienotajiem dokumentiem un konkrēta directory dokumentiem visi dokumenti rādas vienā lapā.
+        Vajadzētu saveidot tā, ka rādas pa 9 dokumentiem vienā lapā (desktop versijai), pa kādiem 6 dokumentiem
+        (planšetes versijā) un pa kādiem 4-6 ( ??? ) dokumentiem (mobile versijā).
+    - Uztaisot ekrānu šaurāku, pazūd navigācija. Vajadzētu izveidot tā kā parasti mājaslapās ir tās 3 svītriņas,
+        uz kurām uzspiežot parādās navigācija.
+    - Veicot editu, pagaidām nav iespējams editot pašu failu. Pagaidām var tikai faila nosaukumu, description vai
+        directory. :c
+    <!-- - Documents tabulai 'description' laukam jābūt text nevis nvarchar tipam, jo nvarchar max garums ir 191 simbols. -->
+    - Pie pēdējiem pieliktajiem un konkrēta directory dokumentiem pielikt ziņu "Netika atrasts neviens dokuments" 
+        gadījumā, ja konkrētajā directory nav neviena dokumenta.
+
+__________________________________________________________________________________________________________________
+
+Iespējamie papildinājumi :
+    <!-- - Pēdējo pievienoto dokumentu un konkrēta directory dokumentu skatā pie kreisās puses navigācijas varētu pielikt
+        linku uz pēdējiem pievienotajiem dokumentiem, gadījumam, ja ir atvērts konkrēts directory, piemēram, Algebra,
+        tad lai nokļūtu uz pēdējiem pievienotajiem dokumentiem, ir vai nu jāiet caur navigāciju, vai arī browserī
+        jāspiež back. -->
+    - Varētu izveidot, ka ir iespēja nosūtīt adminam ziņu, kas parādās admin panelī nelielā sadaļā (sūtītājam ir 
+        jānorāda epasts, lai admins varētu atbildēt vai arī epasts jau tiks ņemts kopā ar user informāciju, kurš 
+        sūtījis šo ziņu). Tam nepieciešama būtu atsevišķa datubāzes tabula ar message id (varētu uztaisīt kaut kādu 
+        interesantaku id, atkarībā no laika un usera or smth), user_id (lai parādītu vārdu, kas sūtījis un epastu 
+        uz kuru atbildēt), message (teksts, kas tika ierakstīts ziņā), date (kad tika nosūtīts), is_read (vai ziņa ir
+        izlasīta, lai var uztaisīt, ka atšķiras izlasītās no neizlasītajām), show (bool tips. poga adminam, kuru 
+        uzspiest, lai ziņa vairs nerādītos, bet saglabātos datubāzē).
+
+__________________________________________________________________________________________________________________
